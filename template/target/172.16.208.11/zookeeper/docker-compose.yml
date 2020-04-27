@@ -1,0 +1,19 @@
+version: '2'
+services:
+ zookeeper-1:
+  image: zookeeper
+  container_name: zookeeper-1
+  restart: on-failure
+  network_mode: "host"
+  ports:
+    - 2181:2181
+    - 2888:2888
+    - 3888:3888
+  volumes:
+    - "/data/zookeeper/data:/data"
+    - "/data/zookeeper/datalog:/datalog"
+    - "/data/zookeeper/log:/log"
+  environment:
+    ZOO_MY_ID: 1
+    ZOO_SERVERS: server.0=172.16.208.10:2888:3888;2181 server.1=0.0.0.0:2888:3888;2181 server.2=172.16.208.12:2888:3888;2181 
+
